@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keen AI — Business Dashboard</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f172a; color: #e2e8f0; padding: 20px; max-width: 600px; margin: 0 auto; }
+  h1 { font-size: 1.6rem; margin-bottom: 4px; color: #38bdf8; }
+  h1 span { color: #94a3b8; font-weight: 400; font-size: 0.9rem; }
+  .subtitle { color: #64748b; font-size: 0.85rem; margin-bottom: 24px; }
+  .card { background: #1e293b; border-radius: 12px; padding: 16px; margin-bottom: 16px; border: 1px solid #334155; }
+  .card h2 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: #38bdf8; margin-bottom: 12px; }
+  .row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #334155; font-size: 0.9rem; }
+  .row:last-child { border-bottom: none; }
+  .label { color: #94a3b8; }
+  .value { color: #f1f5f9; text-align: right; }
+  .value a { color: #38bdf8; text-decoration: none; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; }
+  .done { background: #065f46; color: #6ee7b7; }
+  .pending { background: #78350f; color: #fbbf24; }
+  .next { background: #1e40af; color: #93c5fd; }
+  .checklist { list-style: none; padding: 0; }
+  .checklist li { padding: 8px 0; border-bottom: 1px solid #334155; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
+  .checklist li:last-child { border-bottom: none; }
+  .check { width: 20px; height: 20px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; flex-shrink: 0; }
+  .check.yes { background: #065f46; color: #6ee7b7; }
+  .check.no { background: #334155; color: #64748b; }
+  .demos { list-style: none; padding: 0; }
+  .demos li { padding: 8px 0; border-bottom: 1px solid #334155; font-size: 0.9rem; }
+  .demos li:last-child { border-bottom: none; }
+  .demos .client { color: #94a3b8; font-size: 0.8rem; }
+  .demos .app { color: #f1f5f9; font-weight: 500; }
+  .docs { list-style: none; padding: 0; }
+  .docs li { padding: 6px 0; font-size: 0.9rem; color: #cbd5e1; }
+  .docs li::before { content: '📄 '; }
+</style>
+</head>
+<body>
+
+<h1>Keen AI <span>LLC</span></h1>
+<div class="subtitle">Business Dashboard</div>
+
+<div class="card">
+  <h2>🏢 Entity</h2>
+  <div class="row"><span class="label">Name</span><span class="value">Keen AI LLC</span></div>
+  <div class="row"><span class="label">State</span><span class="value">Utah</span></div>
+  <div class="row"><span class="label">Type</span><span class="value">Domestic LLC, member-managed</span></div>
+  <div class="row"><span class="label">Member</span><span class="value">Gideon Abbott</span></div>
+  <div class="row"><span class="label">EIN</span><span class="value"><span class="badge done">✓ Obtained</span></span></div>
+</div>
+
+<div class="card">
+  <h2>🌐 Online</h2>
+  <div class="row"><span class="label">Domain</span><span class="value"><a href="https://keenai.us">keenai.us</a></span></div>
+  <div class="row"><span class="label">Email</span><span class="value">gideon@keenai.us</span></div>
+  <div class="row"><span class="label">GitHub</span><span class="value"><a href="https://github.com/Gabbott6/keenai-site">Gabbott6</a></span></div>
+</div>
+
+<div class="card">
+  <h2>🏦 Banking</h2>
+  <div class="row"><span class="label">Personal</span><span class="value">Mountain America CU</span></div>
+  <div class="row"><span class="label">Business</span><span class="value"><span class="badge next">⬜ Open at MACU</span></span></div>
+</div>
+
+<div class="card">
+  <h2>✅ Setup Checklist</h2>
+  <ul class="checklist">
+    <li><span class="check yes">✓</span> Register Keen AI LLC</li>
+    <li><span class="check yes">✓</span> Get EIN</li>
+    <li><span class="check yes">✓</span> Register domain (keenai.us)</li>
+    <li><span class="check yes">✓</span> DNS + SSL configured</li>
+    <li><span class="check yes">✓</span> Build landing page</li>
+    <li><span class="check no">→</span> <strong>Open business bank account</strong> <span class="badge next">NEXT</span></li>
+    <li><span class="check no">○</span> Business insurance (Hiscox / Next Insurance)</li>
+    <li><span class="check no">○</span> Email forwarding → personal</li>
+    <li><span class="check no">○</span> Verify keenai.us fully live</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>🎯 Demos</h2>
+  <ul class="demos">
+    <li><span class="app">SmartDoc Dental</span><br><span class="client">Rock Canyon Dentistry — voice-to-text SOAP notes, retention, billing</span></li>
+    <li><span class="app">DentalFlow AI</span><br><span class="client">Provo Dental — scheduling, chatbot, insurance verification</span></li>
+    <li><span class="app">TaxStream AI</span><br><span class="client">Larsen CPA — document processor, deduction finder, bookkeeping</span></li>
+    <li><span class="app">PostOp Follow-Up</span><br><span class="client">Utah Oral Surgeons — post-op tracking & outcomes</span></li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>📄 Document Templates</h2>
+  <ul class="docs">
+    <li>Master Services Agreement (MSA)</li>
+    <li>Statement of Work (SOW)</li>
+    <li>Operating Agreement (single-member)</li>
+  </ul>
+</div>
+
+</body>
+</html>
