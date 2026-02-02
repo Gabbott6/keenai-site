@@ -3,144 +3,106 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Keen AI — Business Dashboard</title>
+<title>Keen AI — Dashboard</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f172a; color: #e2e8f0; padding: 20px; max-width: 600px; margin: 0 auto; }
-  h1 { font-size: 1.6rem; margin-bottom: 4px; color: #38bdf8; }
-  h1 span { color: #94a3b8; font-weight: 400; font-size: 0.9rem; }
-  .subtitle { color: #64748b; font-size: 0.85rem; margin-bottom: 24px; }
-  .card { background: #1e293b; border-radius: 12px; padding: 16px; margin-bottom: 16px; border: 1px solid #334155; }
-  .card h2 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: #38bdf8; margin-bottom: 12px; }
-  .row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #334155; font-size: 0.9rem; }
-  .row:last-child { border-bottom: none; }
-  .label { color: #94a3b8; }
-  .value { color: #f1f5f9; text-align: right; max-width: 60%; }
-  .value a { color: #38bdf8; text-decoration: none; }
-  .badge { display: inline-block; padding: 2px 8px; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; }
-  .done { background: #065f46; color: #6ee7b7; }
-  .pending { background: #78350f; color: #fbbf24; }
-  .next { background: #1e40af; color: #93c5fd; }
-  .checklist { list-style: none; padding: 0; }
-  .checklist li { padding: 8px 0; border-bottom: 1px solid #334155; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
-  .checklist li:last-child { border-bottom: none; }
-  .check { width: 20px; height: 20px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; flex-shrink: 0; }
-  .check.yes { background: #065f46; color: #6ee7b7; }
-  .check.no { background: #334155; color: #64748b; }
-  .demos { list-style: none; padding: 0; }
-  .demos li { padding: 8px 0; border-bottom: 1px solid #334155; font-size: 0.9rem; }
-  .demos li:last-child { border-bottom: none; }
-  .demos .client { color: #94a3b8; font-size: 0.8rem; }
-  .demos .app { color: #f1f5f9; font-weight: 500; }
-  .doc-link { display: block; padding: 10px 14px; margin-bottom: 8px; background: #334155; border-radius: 8px; color: #f1f5f9; text-decoration: none; font-size: 0.9rem; border: 1px solid #475569; transition: background 0.2s; }
-  .doc-link:last-child { margin-bottom: 0; }
-  .doc-link:hover, .doc-link:active { background: #475569; }
-  .doc-link .doc-icon { margin-right: 8px; }
-  .doc-link .doc-desc { display: block; color: #94a3b8; font-size: 0.78rem; margin-top: 2px; }
-  .bank-box { background: #172554; border: 1px solid #1e40af; border-radius: 10px; padding: 14px; margin-top: 12px; }
-  .bank-box h3 { font-size: 0.85rem; color: #93c5fd; margin-bottom: 10px; }
-  .bank-box ul { list-style: none; padding: 0; }
-  .bank-box li { padding: 5px 0; font-size: 0.85rem; color: #cbd5e1; }
-  .bank-box li::before { content: '☐ '; color: #60a5fa; }
-  .copy-btn { background: #334155; border: 1px solid #475569; color: #94a3b8; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; cursor: pointer; margin-left: 6px; }
-  .copy-btn:active { background: #475569; color: #f1f5f9; }
-  .mono { font-family: 'SF Mono', 'Fira Code', monospace; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f172a; color: #e2e8f0; display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 20px; }
+  .login-box { background: #1e293b; border-radius: 16px; padding: 32px; max-width: 380px; width: 100%; border: 1px solid #334155; text-align: center; }
+  .login-box h1 { font-size: 1.4rem; color: #38bdf8; margin-bottom: 4px; }
+  .login-box .sub { color: #64748b; font-size: 0.85rem; margin-bottom: 24px; }
+  .login-box input { width: 100%; padding: 12px 16px; border-radius: 8px; border: 1px solid #475569; background: #0f172a; color: #f1f5f9; font-size: 1rem; margin-bottom: 12px; outline: none; }
+  .login-box input:focus { border-color: #38bdf8; }
+  .login-box button { width: 100%; padding: 12px; border-radius: 8px; border: none; background: #38bdf8; color: #0f172a; font-size: 1rem; font-weight: 600; cursor: pointer; }
+  .login-box button:active { background: #0ea5e9; }
+  .error { color: #f87171; font-size: 0.85rem; margin-top: 8px; display: none; }
+  #content { display: none; max-width: 600px; margin: 0 auto; }
 </style>
 </head>
 <body>
 
-<h1>Keen AI <span>LLC</span></h1>
-<div class="subtitle">Business Dashboard — Private</div>
-
-<!-- ENTITY -->
-<div class="card">
-  <h2>🏢 Entity Information</h2>
-  <div class="row"><span class="label">Legal Name</span><span class="value">Keen AI LLC</span></div>
-  <div class="row"><span class="label">State</span><span class="value">Utah</span></div>
-  <div class="row"><span class="label">Type</span><span class="value">Domestic LLC, member-managed</span></div>
-  <div class="row"><span class="label">Formation Date</span><span class="value">February 1, 2026</span></div>
-  <div class="row"><span class="label">Member</span><span class="value">Gideon W. Abbott (sole)</span></div>
-  <div class="row">
-    <span class="label">EIN</span>
-    <span class="value mono">41-3996568 <button class="copy-btn" onclick="navigator.clipboard.writeText('41-3996568')">copy</button></span>
-  </div>
-  <div class="row"><span class="label">Name Control</span><span class="value mono">KEEN</span></div>
-  <div class="row"><span class="label">Principal Office</span><span class="value">3540 Foxton Circle<br>West Jordan, UT 84084</span></div>
+<div class="login-box" id="loginBox">
+  <h1>Keen AI</h1>
+  <p class="sub">Business Dashboard</p>
+  <input type="password" id="pwd" placeholder="Enter password" autofocus>
+  <button onclick="decrypt()">Unlock</button>
+  <p class="error" id="err">Incorrect password</p>
 </div>
 
-<!-- ONLINE -->
-<div class="card">
-  <h2>🌐 Online</h2>
-  <div class="row"><span class="label">Domain</span><span class="value"><a href="https://keenai.us">keenai.us</a></span></div>
-  <div class="row"><span class="label">Email</span><span class="value">gideon@keenai.us</span></div>
-  <div class="row"><span class="label">GitHub</span><span class="value"><a href="https://github.com/Gabbott6/keenai-site">Gabbott6</a></span></div>
-</div>
+<div id="content"></div>
 
-<!-- BANKING -->
-<div class="card">
-  <h2>🏦 Banking</h2>
-  <div class="row"><span class="label">Personal</span><span class="value">Mountain America CU</span></div>
-  <div class="row"><span class="label">Business</span><span class="value"><span class="badge next">⬜ Open at MACU</span></span></div>
-  
-  <div class="bank-box">
-    <h3>📋 What to Bring to Open Business Account</h3>
-    <ul>
-      <li>EIN Confirmation Letter (CP 575) — <a href="docs/CP_575_G.pdf" style="color:#60a5fa;">view PDF</a></li>
-      <li>Certificate of Organization (Utah filing)</li>
-      <li>Signed Operating Agreement — <a href="#operating-agreement" style="color:#60a5fa;">view below</a></li>
-      <li>Government-issued photo ID</li>
-      <li>Initial deposit (check MACU minimum)</li>
-    </ul>
-  </div>
-</div>
+<script>
+const ENCRYPTED = {
+  salt: "oFoug6sAxkWswBIkMoe7Ag==",
+  iv: "bT4x7QesP+wOLG+a",
+  ct: "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"
+};
 
-<!-- DOCUMENTS -->
-<div class="card">
-  <h2>📄 Documents</h2>
-  <a class="doc-link" href="docs/CP_575_G.pdf" target="_blank">
-    <span class="doc-icon">📋</span> IRS EIN Confirmation (CP 575)
-    <span class="doc-desc">EIN: 41-3996568 · Issued February 2, 2026</span>
-  </a>
-  <a class="doc-link" id="operating-agreement" href="docs/operating-agreement.html" target="_blank">
-    <span class="doc-icon">📝</span> Operating Agreement
-    <span class="doc-desc">Filled — needs signature · Effective Feb 1, 2026</span>
-  </a>
-  <a class="doc-link" href="docs/msa.html" target="_blank">
-    <span class="doc-icon">📑</span> Master Services Agreement (Template)
-    <span class="doc-desc">Client engagement contract template</span>
-  </a>
-  <a class="doc-link" href="docs/sow.html" target="_blank">
-    <span class="doc-icon">📄</span> Statement of Work (Template)
-    <span class="doc-desc">Project scope & deliverables template</span>
-  </a>
-</div>
+function b64decode(s) {
+  return Uint8Array.from(atob(s), c => c.charCodeAt(0));
+}
 
-<!-- CHECKLIST -->
-<div class="card">
-  <h2>✅ Setup Checklist</h2>
-  <ul class="checklist">
-    <li><span class="check yes">✓</span> Register Keen AI LLC</li>
-    <li><span class="check yes">✓</span> Get EIN</li>
-    <li><span class="check yes">✓</span> Register domain (keenai.us)</li>
-    <li><span class="check yes">✓</span> DNS + SSL configured</li>
-    <li><span class="check yes">✓</span> Build landing page</li>
-    <li><span class="check no">→</span> <strong>Open business bank account</strong> <span class="badge next">NEXT</span></li>
-    <li><span class="check no">○</span> Business insurance (Hiscox / Next Insurance)</li>
-    <li><span class="check no">○</span> Email forwarding → personal</li>
-    <li><span class="check no">○</span> Verify keenai.us fully live</li>
-  </ul>
-</div>
+async function decrypt() {
+  const pwd = document.getElementById('pwd').value;
+  const err = document.getElementById('err');
+  err.style.display = 'none';
 
-<!-- DEMOS -->
-<div class="card">
-  <h2>🎯 Client Demos</h2>
-  <ul class="demos">
-    <li><span class="app">SmartDoc Dental</span><br><span class="client">Rock Canyon Dentistry — voice-to-text SOAP notes, retention, billing</span></li>
-    <li><span class="app">DentalFlow AI</span><br><span class="client">Provo Dental — scheduling, chatbot, insurance verification</span></li>
-    <li><span class="app">TaxStream AI</span><br><span class="client">Larsen CPA — document processor, deduction finder, bookkeeping</span></li>
-    <li><span class="app">PostOp Follow-Up</span><br><span class="client">Utah Oral Surgeons — post-op tracking & outcomes</span></li>
-  </ul>
-</div>
+  try {
+    const salt = b64decode(ENCRYPTED.salt);
+    const iv = b64decode(ENCRYPTED.iv);
+    const ct = b64decode(ENCRYPTED.ct);
+
+    const keyMaterial = await crypto.subtle.importKey(
+      'raw', new TextEncoder().encode(pwd), 'PBKDF2', false, ['deriveKey']
+    );
+
+    const key = await crypto.subtle.deriveKey(
+      { name: 'PBKDF2', salt, iterations: 600000, hash: 'SHA-256' },
+      keyMaterial,
+      { name: 'AES-GCM', length: 256 },
+      false,
+      ['decrypt']
+    );
+
+    const decrypted = await crypto.subtle.decrypt(
+      { name: 'AES-GCM', iv },
+      key,
+      ct
+    );
+
+    const html = new TextDecoder().decode(decrypted);
+
+    // Replace entire page with decrypted content
+    document.getElementById('loginBox').style.display = 'none';
+    const content = document.getElementById('content');
+    content.style.display = 'block';
+    content.innerHTML = html;
+
+    // Execute any scripts in decrypted content
+    content.querySelectorAll('script').forEach(old => {
+      const s = document.createElement('script');
+      s.textContent = old.textContent;
+      old.replaceWith(s);
+    });
+
+    // Apply styles from decrypted content
+    const styleMatch = html.match(/<style>([\s\S]*?)<\/style>/);
+    if (styleMatch) {
+      const style = document.createElement('style');
+      style.textContent = styleMatch[1];
+      document.head.appendChild(style);
+    }
+
+  } catch (e) {
+    err.style.display = 'block';
+    document.getElementById('pwd').select();
+  }
+}
+
+// Enter key support
+document.getElementById('pwd').addEventListener('keydown', e => {
+  if (e.key === 'Enter') decrypt();
+});
+</script>
 
 </body>
 </html>
